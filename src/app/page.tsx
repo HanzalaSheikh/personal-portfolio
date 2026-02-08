@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import PhysicsGallery from '@/components/PhysicsGallery';
 import PortfolioList from '@/components/PortfolioList';
 import { ZoomParallax } from '@/components/ZoomParallax';
+import NeuralHeroDemo from '@/components/NeuralHeroDemo';
 import Lenis from 'lenis';
 
 export default function Home() {
@@ -20,42 +21,56 @@ export default function Home() {
 
   const parallaxImages = [
     { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&q=80', alt: 'Architecture' },
-    { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&q=80', alt: 'City' },
-    { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1280&q=80', alt: 'Abstract' },
+    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80', alt: 'Forest' },
+    { src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1280&q=80', alt: 'Tech' },
     { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=80', alt: 'Mountain' },
     { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1280&q=80', alt: 'Design' },
-    { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&q=80', alt: 'Ocean' },
-    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80', alt: 'Forest' },
+    { src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&q=80', alt: 'Tech Sphere' },
+    { src: 'https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?w=1280&q=80', alt: 'Industry' },
   ];
 
   return (
-    <main style={{ minHeight: '100vh', background: '#fff' }}>
+    <main className="bg-background min-h-screen">
       <Header />
-      <PhysicsGallery />
-      
+
+      {/* Hero Section */}
+      <NeuralHeroDemo />
+
       {/* About Section with Zoom Parallax */}
-      <section style={{ padding: '100px 0' }}>
-        <div style={{ textAlign: 'center', marginBottom: '100px' }}>
-          <h2 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '2px', color: '#666', textTransform: 'uppercase' }}>
-            About Our Vision
+      <section className="py-32 bg-background relative z-20">
+        <div className="text-center mb-24 max-w-4xl mx-auto px-4">
+          <h2 className="text-xs font-black text-primary tracking-[0.4em] uppercase mb-4 font-title">
+            Our Digital Vision
           </h2>
-          <h1 style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 900, marginTop: '20px' }}>
-            We zoom into the details <br /> that matter most.
+          <h1 className="text-5xl md:text-8xl font-bold font-title uppercase leading-[0.9] text-white">
+            We zoom into the details <br /> <span className="text-secondary">that matter most.</span>
           </h1>
+          <p className="mt-10 text-muted max-w-xl mx-auto text-lg leading-relaxed font-sans">
+            Pioneering the next era of interaction through pixel-perfect precision and high-performance engineering.
+          </p>
         </div>
         <ZoomParallax images={parallaxImages} />
       </section>
 
+      {/* Projects List */}
       <PortfolioList />
-      <footer style={{
-        padding: '40px',
-        textAlign: 'center',
-        background: '#f9f9f9',
-        borderTop: '1px solid #eee'
-      }}>
-        <p style={{ fontSize: '14px', color: '#666' }}>
-          © 2026 Creative Monster Agency. Inspired by Wildish & Co.
-        </p>
+
+      {/* Physics Playground (Footer area) */}
+      <section className="mt-32">
+        <PhysicsGallery />
+      </section>
+
+      {/* Final Footer */}
+      <footer className="py-20 text-center bg-background border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4">
+          <h3 className="font-title text-2xl font-bold text-white mb-6 uppercase tracking-wider">Let's Create the Future</h3>
+          <p className="text-muted text-sm font-medium tracking-widest uppercase mb-4">
+            Based in the Digital Space
+          </p>
+          <p className="text-white/10 text-[10px] font-black tracking-[0.6em] uppercase">
+            © 2026 Creative Intelligent Agency
+          </p>
+        </div>
       </footer>
     </main>
   );

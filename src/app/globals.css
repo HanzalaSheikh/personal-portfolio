@@ -1,26 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+@import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-}
+    /* Backgrounds & Surfaces */
+    --body-background: #020617;       /* Deepest Space (Darker than Midnight) */
+    --grey-bg: #0B1120;              /* Dark Navy for section backgrounds */
+    --lighter-color: #0F172A;         /* Surface/Card color */
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    /* Typography */
+    --main-color: #000000;           /* Pure black for high-contrast overlays */
+    --heading-color: #FFFFFF;        /* Pure white for maximum impact */
+    --body-color: #CBD5E1;           /* Soft Blue-Grey for readable text */
+    --subtitle-color: #94A3B8;       /* Muted slate for secondary text */
+    --white-color: #FFFFFF;
+    --black-color: #000000;
+
+    /* Accents (Dual-Tone) */
+    --primary-color: #A855F7;        /* Vivid Purple (Main Brand Color) */
+    --secondary-accent: #06B6D4;     /* Electric Cyan (Interactive/Links) */
+    --primary-hover: #C084FC;        /* Lighter Purple for hover */
+    
+    /* Borders & Glassmorphism */
+    --border-color: rgba(168, 85, 247, 0.2); /* Faint Purple border */
+    --button-border: rgba(6, 182, 212, 0.5);   /* Cyan border for secondary buttons */
+    --glass-bg: rgba(15, 23, 42, 0.6);         /* For translucent "glass" cards */
+    
+    /* Shadows & Glows */
+    --purple-glow: 0 0 20px rgba(168, 85, 247, 0.3);
+    --cyan-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+
+    /* Fonts (handled via layout.tsx variables mostly, but defined here for CSS) */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Inter', sans-serif;
+  color: var(--body-color);
+  background: var(--body-background);
+  font-family: var(--font-poppins), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-family: var(--font-oswald), sans-serif;
+}
+
 canvas {
   display: block;
 }
-

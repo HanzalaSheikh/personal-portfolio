@@ -48,8 +48,8 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   };
 
   return (
-    <div ref={container} style={{ position: 'relative', height: '300vh' }}>
-      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+    <div ref={container} className="relative h-[300vh] bg-[#020617]">
+      <div className="sticky top-0 h-screen overflow-hidden">
         {images.map(({ src, alt }, index) => {
           const scale = scales[index % scales.length];
           const childSpecificStyles = getChildStyles(index);
@@ -70,21 +70,15 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
               }}
             >
               <div
+                className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-lighter shadow-black/50"
                 style={{
-                  position: 'relative',
                   ...childSpecificStyles,
                 }}
               >
                 <img
                   src={src || '/placeholder.svg'}
                   alt={alt || `Parallax image ${index + 1}`}
-                  style={{
-                    height: '100%',
-                    width: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                  }}
+                  className="h-full w-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-700"
                 />
               </div>
             </motion.div>
