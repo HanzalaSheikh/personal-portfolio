@@ -2,6 +2,7 @@
 
 import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
+import { Component as LuminaInteractiveList } from './ui/lumina-interactive-list';
 
 interface ImageItem {
   src: string;
@@ -25,6 +26,10 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
   const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
   const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+
+  const listOpacity = useTransform(scrollYProgress, [0.7, 0.9], [0, 1]);
+  const centerImageOpacity = useTransform(scrollYProgress, [0.7, 0.9], [1, 0]);
+  const pointerEvents = useTransform(scrollYProgress, (v: number) => v > 0.8 ? 'auto' : 'none');
 
   const scales: MotionValue<number>[] = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
@@ -73,6 +78,7 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
                 className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-lighter shadow-black/50"
                 style={{
                   ...childSpecificStyles,
+                  opacity: (index === 0 ? centerImageOpacity : 1) as any,
                 }}
               >
                 <img
@@ -84,6 +90,22 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
             </motion.div>
           );
         })}
+
+        {/* Interactive List as a fixed overlay to avoid scale-inherited text issues */}
+        <motion.div 
+          style={{ 
+            opacity: listOpacity,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 100,
+            pointerEvents: pointerEvents as any
+          }}
+        >
+          <LuminaInteractiveList />
+        </motion.div>
       </div>
     </div>
   );

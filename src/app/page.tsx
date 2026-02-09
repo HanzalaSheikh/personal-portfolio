@@ -6,6 +6,14 @@ import PhysicsGallery from '@/components/PhysicsGallery';
 import PortfolioList from '@/components/PortfolioList';
 import { ZoomParallax } from '@/components/ZoomParallax';
 import NeuralHeroDemo from '@/components/NeuralHeroDemo';
+import { HoverPreview } from '@/components/ui/hover-preview';
+import { ExpandOnHover } from '@/components/ui/expand-cards';
+import { ContactCard } from '@/components/ui/contact-card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { MailIcon, PhoneIcon, MapPinIcon } from 'lucide-react';
 import Lenis from 'lenis';
 
 export default function Home() {
@@ -20,13 +28,12 @@ export default function Home() {
   }, []);
 
   const parallaxImages = [
-    { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&q=80', alt: 'Architecture' },
-    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80', alt: 'Forest' },
-    { src: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1280&q=80', alt: 'Tech' },
-    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&q=80', alt: 'Mountain' },
-    { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1280&q=80', alt: 'Design' },
-    { src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280&q=80', alt: 'Tech Sphere' },
-    { src: 'https://images.unsplash.com/photo-1485081669829-bacb8c7bb1f3?w=1280&q=80', alt: 'Industry' },
+    { title: "Ethereal Glow", src: "https://assets.codepen.io/7558/orange-portrait-001.jpg", alt: 'Ethereal Glow' },
+    { title: "Rose Mirage", src: "https://assets.codepen.io/7558/orange-portrait-002.jpg", alt: 'Rose Mirage' },
+    { title: "Velvet Mystique", src: "https://assets.codepen.io/7558/orange-portrait-003.jpg", alt: 'Velvet Mystique' },
+    { title: "Golden Hour", src: "https://assets.codepen.io/7558/orange-portrait-004.jpg", alt: 'Golden Hour' },
+    { title: "Midnight Dreams", src: "https://assets.codepen.io/7558/orange-portrait-005.jpg", alt: 'Midnight Dreams' },
+    { title: "Silver Light", src: "https://assets.codepen.io/7558/orange-portrait-006.jpg", alt: 'Silver Light' },
   ];
 
   return (
@@ -35,6 +42,12 @@ export default function Home() {
 
       {/* Hero Section */}
       <NeuralHeroDemo />
+
+      {/* Interactive About Section */}
+      <HoverPreview />
+
+      {/* Expandable Cards Section */}
+      <ExpandOnHover />
 
       {/* About Section with Zoom Parallax */}
       <section className="py-32 bg-background relative z-20">
@@ -52,12 +65,60 @@ export default function Home() {
         <ZoomParallax images={parallaxImages} />
       </section>
 
-      {/* Projects List */}
-      <PortfolioList />
+      {/* Portfolio projects are now integrated within ZoomParallax */}
 
-      {/* Physics Playground (Footer area) */}
       <section className="mt-32">
         <PhysicsGallery />
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-32 px-4 bg-background relative z-20">
+        <div className="mx-auto max-w-5xl">
+          <ContactCard
+            title="Get in touch"
+            description="If you have any questions regarding our Services or need help, please fill out the form here. We do our best to respond within 1 business day."
+            contactInfo={[
+              {
+                icon: MailIcon,
+                label: 'Email',
+                value: 'contact@21st.dev',
+              },
+              {
+                icon: PhoneIcon,
+                label: 'Phone',
+                value: '+92 312 1234567',
+              },
+              {
+                icon: MapPinIcon,
+                label: 'Address',
+                value: 'Faisalabad, Pakistan',
+                className: 'col-span-2',
+              }
+            ]}
+          >
+            <form action="" className="w-full space-y-4">
+              <div className="flex flex-col gap-2">
+                <Label className="text-white/70">Name</Label>
+                <Input type="text" className="bg-white/5 border-white/10 text-white" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="text-white/70">Email</Label>
+                <Input type="email" className="bg-white/5 border-white/10 text-white" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="text-white/70">Phone</Label>
+                <Input type="phone" className="bg-white/5 border-white/10 text-white" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label className="text-white/70">Message</Label>
+                <Textarea className="bg-white/5 border-white/10 text-white min-h-[120px]" />
+              </div>
+              <Button className="w-full bg-primary hover:bg-primary/90 text-white font-bold h-12 rounded-xl" type="button">
+                Submit
+              </Button>
+            </form>
+          </ContactCard>
+        </div>
       </section>
 
       {/* Final Footer */}
